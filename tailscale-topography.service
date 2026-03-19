@@ -1,0 +1,17 @@
+[Unit]
+Description=Tailscale Topography
+After=network-online.target tailscaled.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/tailscale-topography
+ExecStart=/usr/bin/node /opt/tailscale-topography/server.js
+Restart=on-failure
+RestartSec=5
+Environment=HOST=127.0.0.1
+Environment=PORT=4180
+
+[Install]
+WantedBy=multi-user.target
+

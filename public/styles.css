@@ -1,0 +1,362 @@
+:root {
+  --bg: #08131f;
+  --bg-alt: #0d2233;
+  --panel: rgba(11, 28, 42, 0.8);
+  --panel-border: rgba(152, 211, 255, 0.16);
+  --text: #edf7ff;
+  --muted: #93adc2;
+  --accent: #70e1ff;
+  --accent-2: #4df0b0;
+  --warn: #ffbf69;
+  --offline: #ff7b7b;
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(112, 225, 255, 0.22), transparent 28%),
+    radial-gradient(circle at top right, rgba(77, 240, 176, 0.2), transparent 24%),
+    linear-gradient(160deg, #050b11, #08131f 45%, #0d2233);
+}
+
+.page-shell {
+  width: min(1400px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 40px;
+}
+
+.hero,
+.panel,
+.metric-card {
+  backdrop-filter: blur(10px);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow);
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  border-radius: 28px;
+  padding: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  font-size: 0.78rem;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-display);
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  line-height: 0.95;
+}
+
+.lede,
+.panel-header p,
+.node-subtitle,
+.node-meta dt,
+#tailnetLabel {
+  color: var(--muted);
+}
+
+.lede {
+  max-width: 48rem;
+  margin: 12px 0 0;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: grid;
+  gap: 12px;
+  justify-items: end;
+}
+
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font: inherit;
+  font-weight: 700;
+  color: #04111a;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  cursor: pointer;
+}
+
+.status-pill,
+.node-state,
+.graph-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 0.86rem;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.metric-card {
+  border-radius: 22px;
+  padding: 16px;
+}
+
+.metric-label {
+  display: block;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.metric-value {
+  font-size: 1.8rem;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.25fr 0.9fr;
+  gap: 18px;
+}
+
+.panel {
+  border-radius: 28px;
+  padding: 22px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: baseline;
+  margin-bottom: 18px;
+}
+
+.graph {
+  display: grid;
+  gap: 16px;
+}
+
+.graph-central {
+  min-height: 620px;
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, rgba(112, 225, 255, 0.18), transparent 36%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
+}
+
+.graph-scene {
+  position: relative;
+  min-height: 620px;
+  isolation: isolate;
+}
+
+.graph-rings {
+  position: absolute;
+  inset: 0;
+}
+
+.graph-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed rgba(112, 225, 255, 0.2);
+}
+
+.graph-ring-inner {
+  width: min(52vw, 400px);
+  height: min(52vw, 400px);
+}
+
+.graph-ring-outer {
+  width: min(74vw, 560px);
+  height: min(74vw, 560px);
+}
+
+.graph-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.graph-line {
+  stroke-width: 0.35;
+  stroke: rgba(147, 173, 194, 0.45);
+}
+
+.graph-line.direct {
+  stroke: rgba(77, 240, 176, 0.75);
+}
+
+.graph-line.relay {
+  stroke: rgba(255, 191, 105, 0.7);
+}
+
+.graph-line.unknown {
+  stroke: rgba(255, 123, 123, 0.6);
+}
+
+.graph-node {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 156px;
+  min-height: 82px;
+  padding: 12px;
+  border-radius: 18px;
+  background: rgba(3, 14, 22, 0.9);
+  border: 1px solid rgba(112, 225, 255, 0.14);
+  text-align: left;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.graph-node.self {
+  z-index: 2;
+  width: 192px;
+  min-height: 92px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(112, 225, 255, 0.18), rgba(77, 240, 176, 0.15));
+}
+
+.graph-node.offline {
+  border-color: rgba(255, 123, 123, 0.32);
+}
+
+.graph-node h3 {
+  font-size: 0.98rem;
+  margin-bottom: 6px;
+  overflow-wrap: anywhere;
+}
+
+.graph-node p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.graph-links {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.graph-chip.direct {
+  color: var(--accent-2);
+}
+
+.graph-chip.relay {
+  color: var(--warn);
+}
+
+.graph-chip.unknown,
+.node-state.offline {
+  color: var(--offline);
+}
+
+.node-list {
+  display: grid;
+  gap: 12px;
+  max-height: 72vh;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+.node-card {
+  border-radius: 20px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.node-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.node-title {
+  margin-bottom: 4px;
+}
+
+.node-meta {
+  margin: 0;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 8px 12px;
+  font-size: 0.92rem;
+}
+
+.node-meta dd {
+  margin: 0;
+  word-break: break-word;
+}
+
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero-actions {
+    justify-items: start;
+  }
+
+  .graph-central,
+  .graph-scene {
+    min-height: 680px;
+  }
+
+  .graph-ring-inner {
+    width: min(66vw, 320px);
+    height: min(66vw, 320px);
+  }
+
+  .graph-ring-outer {
+    width: min(92vw, 460px);
+    height: min(92vw, 460px);
+  }
+
+  .graph-node {
+    width: 144px;
+  }
+
+  .graph-node.self {
+    width: 180px;
+  }
+}

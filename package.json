@@ -1,0 +1,10 @@
+{
+  "name": "tailscale-topography",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local topology viewer for a Tailscale-connected node",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
+

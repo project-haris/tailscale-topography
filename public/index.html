@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tailscale Topography</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Tailnet Map</p>
+          <h1>Tailscale Topography</h1>
+          <p class="lede">
+            A local topology view generated from <code>tailscale status --json</code> on this node.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <button id="refreshButton" type="button">Refresh</button>
+          <span id="statusPill" class="status-pill">Waiting for data</span>
+        </div>
+      </header>
+
+      <section class="metrics" id="metrics"></section>
+
+      <main class="layout">
+        <section class="panel canvas-panel">
+          <div class="panel-header">
+            <h2>Topology</h2>
+            <p id="tailnetLabel">Loading tailnet...</p>
+          </div>
+          <div id="graph" class="graph" aria-live="polite"></div>
+        </section>
+
+        <section class="panel details-panel">
+          <div class="panel-header">
+            <h2>Nodes</h2>
+            <p>Peer inventory and connection details</p>
+          </div>
+          <div id="nodeList" class="node-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="metricTemplate">
+      <article class="metric-card">
+        <span class="metric-label"></span>
+        <strong class="metric-value"></strong>
+      </article>
+    </template>
+
+    <template id="nodeTemplate">
+      <article class="node-card">
+        <div class="node-card-header">
+          <div>
+            <h3 class="node-title"></h3>
+            <p class="node-subtitle"></p>
+          </div>
+          <span class="node-state"></span>
+        </div>
+        <dl class="node-meta"></dl>
+      </article>
+    </template>
+
+    <script src="/app.js"></script>
+  </body>
+  </html>
+
