@@ -3,8 +3,7 @@ services:
     build: .
     container_name: tailscale-topography
     restart: unless-stopped
-    ports:
-      - "4180:4180"
+    network_mode: host
     environment:
       HOST: 0.0.0.0
       PORT: 4180

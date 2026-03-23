@@ -93,6 +93,8 @@ This repo now includes a `Dockerfile` and `docker-compose.yml`.
 
 The container does not run its own Tailscale daemon. Instead, it uses the host's existing `tailscaled` instance by mounting the host socket at `/var/run/tailscale/tailscaled.sock`.
 
+On firewalld-managed hosts such as `haris-citadel`, the compose file uses `network_mode: host` to avoid Docker bridge creation and errors like `INVALID_ZONE: docker`.
+
 Start it with:
 
 ```sh
@@ -109,7 +111,8 @@ http://your-hostname.your-tailnet.ts.net:4180
 Notes:
 
 - The host machine must already be connected to Tailscale.
-- `docker-compose.yml` publishes port `4180` on the host and the app binds to `0.0.0.0`, so it is reachable through the host's Tailscale interface.
+- `docker-compose.yml` uses the host network, and the app binds to `0.0.0.0`, so it is reachable through the host's Tailscale interface on port `4180`.
+- If `haris-citadel` should allow access from other Tailscale nodes, firewalld must allow TCP `4180` on the `tailscale` zone.
 - If you only want tailnet exposure and not general LAN exposure, bind the app to `127.0.0.1` and publish it with `tailscale serve` on the host instead.
 
 ## Notes
