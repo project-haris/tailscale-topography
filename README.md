@@ -6,6 +6,10 @@ A small local website that visualizes the current Tailscale node and its peers b
 tailscale status --json
 ```
 
+[![License](https://img.shields.io/github/license/ahmdngi/tailscale-topography?style=flat-square)]()
+[![Language](https://img.shields.io/badge/language-JavaScript-blue?style=flat-square)]()
+[![Stars](https://img.shields.io/github/stars/ahmdngi/tailscale-topography?style=flat-square)](https://github.com/ahmdngi/tailscale-topography)
+
 The app is intended to run on a machine that is already joined to your tailnet and has `tailscaled` running.
 
 ## What it shows
